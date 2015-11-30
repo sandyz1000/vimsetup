@@ -1,0 +1,141 @@
+execute pathogen#infect()
+syntax on
+
+" Tab switching shortcut
+map to :tabonly<cr>
+map tc :tabclose<cr>
+map tm :tabmove<cr> 
+nnoremap <C-Right> :tabnext<cr>
+nnoremap <C-Left> :tabprev<cr>
+set noerrorbells
+set novisualbell
+set tm=500
+filetype plugin indent on
+
+" TComment toggle key mapping
+map cc :TComment<CR>
+map cb :TCommentBlock<CR>
+nmap <Leader>r :SyntasticCheck rubocop<CR>
+nmap <C-b> :Gblame<CR>
+let g:used_javascript_libs = 'angularjs,angularui,jquery,underscore,backbone'
+let g:tern_map_keys=1
+set splitbelow
+set splitright
+set mouse=a
+set hlsearch
+set ignorecase
+set nu
+set backspace=indent,eol,start
+nmap <C-h> :MRU<CR>
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_max_files=0
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+set autoindent
+set smartindent
+" Auto indent to next line
+imap <C-Return> <CR><CR><C-o>k<Tab>
+set softtabstop=2
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set cursorline
+set t_Co=256
+set guifont=Monospace\ 10
+
+" Switch window key mapping
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+" Tagbar toggle
+let g:tagbar_usearrows = 1
+nnoremap <leader>l :TagbarToggle<CR>
+
+" Vim Solarized color
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+colorscheme solarized
+
+" Screen scroll mapping
+map <S-Down> <C-E>
+map <S-Up> <C-Y>
+
+" (Syntactic)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" JSHint
+let JSHintUpdateWriteOnly=1
+nnoremap <F2> :lclose
+
+" Set Search for keyword from project root using Ag
+let g:ag_working_path_mode="r"
+
+" Mapping for undo and redo in insert mode
+inoremap UU <ESC>u
+inoremap UZ <ESC><C-r>
+inoremap DD <Esc>dd
+
+" Set insert in paste mode toggle
+set pastetoggle=<F10>
+
+" vim session options
+let g:session_autoload='no'
+let g:session_autosave='no'
+
+" Jump matching Tags (MatchTag)
+nnoremap <leader>mm :MtaJumpToOtherTag<cr>
+
+" NerdTreehttps://github.com/ahayman/vim-nodejs-complete
+map <C-\> :NERDTreeToggle<CR>
+" Open NERDtree when vim start automaticatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Close if the only nerd tree is left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+map <C-o> :NERDTreeMirror<CR>
+" Open nerdtree mirror in the new tabs
+" autocmd BufWinEnter * NERDTreeMirror
+" Blackhole register
+nnoremap <leader>b "_
+vnoremap <leader>b "_
+" Clipboard register
+nnoremap <leader>c "+
+vnoremap <leader>c "+
+noremap <silent> <F9> :YRShow<CR>
+" Toggle to front and end of the sentence
+map <C-a> ^
+map <C-z> $
+" VDEBUG
+call pathogen#helptags()
+let g:vdebug_options={}
+let g:vdebug_options["break_on_open"]=0
+" Adjust window height
+nnoremap <silent> <leader>Up :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <leader>Down :exe "resize " . (winheight(0) * 2/3)<CR>
+"OmniComplete tab
+let g:SuperTabDefaultCompletionType = ""
+" EasyTags
+" Let Vim walk up directory hierarchy from CWD to root looking for tags file
+set tags=tags;/
+" Tell EasyTags to use the tags file found by Vim
+let g:easytags_dynamic_files = 1
+let g:easytags_async=1
+let g:easytags_events = ['BufWritePost']
+let g:easytags_auto_highlight = 0
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
