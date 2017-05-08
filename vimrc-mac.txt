@@ -55,7 +55,6 @@ let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
 " Vim Solarized color
-set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
@@ -99,16 +98,7 @@ let g:session_autosave='no'
 " Jump matching Tags (MatchTag)
 nnoremap <leader>mm :MtaJumpToOtherTag<cr>
 
-" NerdTreehttps://github.com/ahayman/vim-nodejs-complete
-map <C-\> :NERDTreeToggle<CR>
-" Open NERDtree when vim start automaticatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Close if the only nerd tree is left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-map <C-o> :NERDTreeMirror<CR>
-" Open nerdtree mirror in the new tabs
-" autocmd BufWinEnter * NERDTreeMirror
+map <C-\> :NERDTreeTabsToggle<CR>
 " Blackhole register
 nnoremap <leader>b "_
 vnoremap <leader>b "_
